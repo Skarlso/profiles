@@ -27,46 +27,47 @@ jobs:
           fi
           echo ::set-output name=BUILD_DATE::$(date -u +'%Y-%m-%dT%H:%M:%SZ')
           echo ::set-output name=VERSION::${VERSION}
-      - name: Setup QEMU
-        uses: docker/setup-qemu-action@v1
-        with:
-          platforms: all
-      - name: Setup Docker Buildx
-        id: buildx
-        uses: docker/setup-buildx-action@v1
-        with:
-          buildkitd-flags: "--debug"
-      - name: Login to Dockerhub
-        uses: docker/login-action@v1
-        with:
-          username: weaveworksprofilesci
-          password: ${{ secrets.DOCKERHUB_PASSWORD_WEAVEWORKSPROFILESCI }}
-      - name: Publish multi-arch container image
-        uses: docker/build-push-action@v2
-        with:
-          push: true
-          builder: ${{ steps.buildx.outputs.name }}
-          context: .
-          file: ./Dockerfile
-          platforms: linux/amd64,linux/arm/v7,linux/arm64
-          tags: |
-            docker.io/${{ env.ORG }}/${{ env.CONTROLLER }}:${{ steps.prep.outputs.VERSION }}
-            docker.io/${{ env.ORG }}/${{ env.CONTROLLER }}:latest
-          labels: |
-            org.opencontainers.image.title=${{ github.event.repository.name }}
-            org.opencontainers.image.description=${{ github.event.repository.description }}
-            org.opencontainers.image.url=${{ github.event.repository.html_url }}
-            org.opencontainers.image.revision=${{ github.sha }}
-            org.opencontainers.image.version=${{ steps.prep.outputs.VERSION }}
-            org.opencontainers.image.created=${{ steps.prep.outputs.BUILD_DATE }}
-      - name: Check images
-        run: |
-          docker buildx imagetools inspect docker.io/${{ env.ORG }}/${{ env.CONTROLLER }}:${{ steps.prep.outputs.VERSION }}
-          docker pull docker.io/${{ env.ORG }}/${{ env.CONTROLLER }}:${{ steps.prep.outputs.VERSION }}
+      # - name: Setup QEMU
+      #   uses: docker/setup-qemu-action@v1
+      #   with:
+      #     platforms: all
+      # - name: Setup Docker Buildx
+      #   id: buildx
+      #   uses: docker/setup-buildx-action@v1
+      #   with:
+      #     buildkitd-flags: "--debug"
+      # - name: Login to Dockerhub
+      #   uses: docker/login-action@v1
+      #   with:
+      #     username: weaveworksprofilesci
+      #     password: ${{ secrets.DOCKERHUB_PASSWORD_WEAVEWORKSPROFILESCI }}
+      # - name: Publish multi-arch container image
+      #   uses: docker/build-push-action@v2
+      #   with:
+      #     push: true
+      #     builder: ${{ steps.buildx.outputs.name }}
+      #     context: .
+      #     file: ./Dockerfile
+      #     platforms: linux/amd64,linux/arm/v7,linux/arm64
+      #     tags: |
+      #       docker.io/${{ env.ORG }}/${{ env.CONTROLLER }}:${{ steps.prep.outputs.VERSION }}
+      #       docker.io/${{ env.ORG }}/${{ env.CONTROLLER }}:latest
+      #     labels: |
+      #       org.opencontainers.image.title=${{ github.event.repository.name }}
+      #       org.opencontainers.image.description=${{ github.event.repository.description }}
+      #       org.opencontainers.image.url=${{ github.event.repository.html_url }}
+      #       org.opencontainers.image.revision=${{ github.sha }}
+      #       org.opencontainers.image.version=${{ steps.prep.outputs.VERSION }}
+      #       org.opencontainers.image.created=${{ steps.prep.outputs.BUILD_DATE }}
+      # - name: Check images
+      #   run: |
+      #     docker buildx imagetools inspect docker.io/${{ env.ORG }}/${{ env.CONTROLLER }}:${{ steps.prep.outputs.VERSION }}
+      #     docker pull docker.io/${{ env.ORG }}/${{ env.CONTROLLER }}:${{ steps.prep.outputs.VERSION }}
       - name: Generate release manifests
         run: |
           mkdir -p config/release/crd config/release/manager config/release/rbac
           kustomize build ./config/crd > ./config/release/crd/${{ env.CONTROLLER }}.crds.yaml
+          (cd ./config/manager && kustomize edit set image weaveworks/profiles-controller:${{ steps.prep.outputs.VERSION }})
           kustomize build ./config/manager > ./config/release/manager/${{ env.CONTROLLER }}.deployment.yaml
           kustomize build ./config/rbac > ./config/release/rbac/${{ env.CONTROLLER }}.rbac.yaml
           kustomize build ./config/prepare > ./config/prepare/prepare.yaml
