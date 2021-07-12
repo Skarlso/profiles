@@ -186,7 +186,6 @@ github.com/fluxcd/kustomize-controller/api v0.11.1 h1:seBEImagW+0+AVE4cXQGwJtNH7
 github.com/fluxcd/kustomize-controller/api v0.11.1/go.mod h1:dyRZGTc7ozlf00OhTkB19lbrKv/IjUB8FfBwcV2dO2w=
 github.com/fluxcd/pkg/apis/kustomize v0.0.1 h1:TkA80R0GopRY27VJqzKyS6ifiKIAfwBd7OHXtV3t2CI=
 github.com/fluxcd/pkg/apis/kustomize v0.0.1/go.mod h1:JAFPfnRmcrAoG1gNiA8kmEXsnOBuDyZ/F5X4DAQcVV0=
-github.com/fluxcd/pkg/apis/meta v0.8.0/go.mod h1:yHuY8kyGHYz22I0jQzqMMGCcHViuzC/WPdo9Gisk8Po=
 github.com/fluxcd/pkg/apis/meta v0.9.0 h1:rxW69p+VmJCKXXkaRYnovRBFlKjd+MJQfm2RrB0B4j8=
 github.com/fluxcd/pkg/apis/meta v0.9.0/go.mod h1:yHuY8kyGHYz22I0jQzqMMGCcHViuzC/WPdo9Gisk8Po=
 github.com/fluxcd/pkg/runtime v0.11.0 h1:FPsiu1k5NQGl2tsaXH5WgSmrOMg7o44jdOP0rW/TI1Y=
@@ -510,8 +509,8 @@ github.com/onsi/ginkgo v1.7.0/go.mod h1:lLunBs/Ym6LB5Z9jYTR76FiuTmxDTDusOGeTQH+W
 github.com/onsi/ginkgo v1.11.0/go.mod h1:lLunBs/Ym6LB5Z9jYTR76FiuTmxDTDusOGeTQH+WWjE=
 github.com/onsi/ginkgo v1.12.1/go.mod h1:zj2OWP4+oCPe1qIXoGWkgMRwljMUYCdkwsT2108oapk=
 github.com/onsi/ginkgo v1.14.1/go.mod h1:iSB4RoI2tjJc9BBv4NKIKWKya62Rps+oPG/Lv9klQyY=
-github.com/onsi/ginkgo v1.16.1 h1:foqVmeWDD6yYpK+Yz3fHyNIxFYNxswxqNFjSKe+vI54=
-github.com/onsi/ginkgo v1.16.1/go.mod h1:CObGmKUOKaSC0RjmoAK7tKyn4Azo5P2IWuoMnvwxz1E=
+github.com/onsi/ginkgo v1.16.4 h1:29JGrr5oVBm5ulCWet69zQkzWipVXIol6ygQUe/EzNc=
+github.com/onsi/ginkgo v1.16.4/go.mod h1:dX+/inL/fNMqNlz0e9LfyB9TswhZpCVdJM/Z6Vvnwo0=
 github.com/onsi/gomega v0.0.0-20170829124025-dcabb60a477c/go.mod h1:C1qb7wdrVGGVU+Z6iS04AVkA3Q65CEZX59MT0QO5uiA=
 github.com/onsi/gomega v1.4.3/go.mod h1:ex+gbHU/CVuBBDIJjb2X0qEXbFg53c61hWP/1CpauHY=
 github.com/onsi/gomega v1.7.0/go.mod h1:ex+gbHU/CVuBBDIJjb2X0qEXbFg53c61hWP/1CpauHY=

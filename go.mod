@@ -4,12 +4,12 @@ go 1.16
 
 require (
 	github.com/fluxcd/helm-controller/api v0.10.0
-	github.com/fluxcd/source-controller/api v0.12.1
 	github.com/fluxcd/kustomize-controller/api v0.11.1
+	github.com/fluxcd/source-controller/api v0.12.1
 	github.com/go-logr/logr v0.4.0
 	github.com/google/uuid v1.2.0
 	github.com/gorilla/mux v1.8.0
-	github.com/onsi/ginkgo v1.16.1
+	github.com/onsi/ginkgo v1.16.4
 	github.com/onsi/gomega v1.11.0
 	golang.org/x/sys v0.0.0-20210403161142-5e06dd20ab57 // indirect
 	golang.org/x/tools v0.1.0 // indirect
