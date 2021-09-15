@@ -93,3 +93,9 @@ jobs:
           token: ${{ secrets.WEAVEWORKS_SLACK_PROFILESBOT_TOKEN }}
           message: ":sparkles: A new release has been created for Profiles! :sparkles:\n\n${{ env.release_notes }}"
           channel: C01M9BYDE5U
+      - name: Trigger userdocs release
+        uses: peter-evans/repository-dispatch@0e8ca8c8a5ca5e28d25af2c27fc5aa40f16cffca
+        with:
+          token: ${{ secrets.WEAVEWORKS_PROFILES_USERDOC_DISPATCH_TOKEN }}
+          event-type: profiles-release
+          repository: weaveworks/profiles-userdocs
